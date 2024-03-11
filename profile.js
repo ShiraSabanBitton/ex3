@@ -9,6 +9,40 @@ app.use(express.static("public"));
 
 app.get("/profile", (req, res) => {
   let id = req.query.id;
+
+  let profilePath = path.join(__dirname, "private", id);
+
+  let biofilePath = path.join(profilePath, "bio.txt");
+  let bioText = fs.readFileSync(biofilePath, "utf8");
+
+  let titlefilePath = path.join(profilePath, "title.txt");
+  let titleText = fs.readFileSync(titlefilePath, "utf8");
+
+  let text1filePath = path.join(profilePath, "text1.txt");
+  let text1Text = fs.readFileSync(text1filePath, "utf8");
+
+  let text2filePath = path.join(profilePath, "text2.txt");
+  let text2Text = fs.readFileSync(text2filePath, "utf8");
+
+  let text3filePath = path.join(profilePath, "text3.txt");
+  let text3Text = fs.readFileSync(text3filePath, "utf8");
+
+  let text4filePath = path.join(profilePath, "text4.txt");
+  let text4Text = fs.readFileSync(text4filePath, "utf8");
+
+  let text5filePath = path.join(profilePath, "text5.txt");
+  let text5Text = fs.readFileSync(text5filePath, "utf8");
+
+  res.render("profile.ejs", {
+    id,
+    titleText,
+    bioText,
+    text1Text,
+    text2Text,
+    text3Text,
+    text4Text,
+    text5Text,
+  });
 });
 
 app.listen(port, () => {
