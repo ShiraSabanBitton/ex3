@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="/profile.css" />
   </head>
   <body>
-    <h1 class="centered-text"><%= id %> Profile</h1>
     <img style="width: 100%" src="../<%= id %>/banner.png" />
 
     <img
@@ -17,19 +16,24 @@
       alt="Profile Image"
     />
 
+    <h1 class="main-title"><%= titleText %></h1>
+
     <div class="container">
-      <section>
-        <div><%- titleText %></div>
-      </section>
+      <div><%- descText %></div>
     </div>
     <div class="center-content">
-      <div><%- bioText %></div>
+      <div class="grid-container">
+        <% htmlBioContent.forEach(item => { %>
+        <p class="grid-item"><%- item %></p>
+        <%});%>
+      </div>
       <img src="../<%= id %>/image1.png" />
     </div>
 
     <div class="bottom-area">
-      <img src="../<%= id %>/image2.png" />
+      <img src="../<%= id %>/image2.png" class="endImg" />
       <div>
+        <h2 class="title-Endorsement">ENDORSEMENT</h2>
         <p class="flex-container-Endorsement"><%- text1Text %></p>
         <p class="flex-container-Endorsement"><%- text2Text %></p>
         <p class="flex-container-Endorsement"><%- text3Text %></p>

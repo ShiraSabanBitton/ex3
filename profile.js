@@ -15,8 +15,13 @@ app.get("/profile", (req, res) => {
   let biofilePath = path.join(profilePath, "bio.txt");
   let bioText = fs.readFileSync(biofilePath, "utf8");
 
+  const htmlBioContent = bioText.split(":");
+
   let titlefilePath = path.join(profilePath, "title.txt");
-  let titleText = fs.readFileSync(titlefilePath, "utf8");
+  let fullTitleText = fs.readFileSync(titlefilePath, "utf8");
+  const splittedFullTitleText = fullTitleText.split("\r\n");
+  let titleText = splittedFullTitleText[0];
+  let descText = splittedFullTitleText[1];
 
   let text1filePath = path.join(profilePath, "text1.txt");
   let text1Text = fs.readFileSync(text1filePath, "utf8");
@@ -35,8 +40,9 @@ app.get("/profile", (req, res) => {
 
   res.render("profile.ejs", {
     id,
+    descText,
     titleText,
-    bioText,
+    htmlBioContent,
     text1Text,
     text2Text,
     text3Text,
