@@ -1,39 +1,58 @@
+<!-- Shira Saban Bitton - 316511658
+Fida Rabah - 204647911
+12/3/24 -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Set the title of the page dynamically using the 'id' variable -->
     <title><%= id %> Profile</title>
+    <!-- Link to the external stylesheet for styling -->
     <link rel="stylesheet" href="/profile.css" />
   </head>
   <body>
+    <!-- Display banner image -->
     <img style="width: 100%" src="../<%= id %>/banner.png" />
 
+    <!-- Display profile image -->
     <img
       class="profile-img"
       src="../<%= id %>/profile.png"
       alt="Profile Image"
     />
 
+    <!-- Display main title retrieved from the 'titleText' variable -->
     <h1 class="main-title"><%= titleText %></h1>
 
+    <!-- Container for description text -->
     <div class="container">
       <div><%- descText %></div>
     </div>
+
+    <!-- Centered content section -->
     <div class="center-content">
+      <!-- Grid container for bio content -->
       <div class="grid-container">
+        <!-- Loop through each item in 'htmlBioContent' and display it -->
         <% htmlBioContent.forEach(item => { %>
         <p class="grid-item"><%- item %></p>
-        <%});%>
+        <% }); %>
       </div>
+      <!-- Display additional image -->
       <img src="../<%= id %>/image1.png" />
     </div>
 
+    <!-- Bottom area section -->
     <div class="bottom-area">
+      <!-- Display additional image -->
       <img src="../<%= id %>/image2.png" class="endImg" />
       <div>
+        <!-- Title for endorsement section -->
         <h2 class="title-Endorsement">ENDORSEMENT</h2>
+        <!-- Display endorsement text retrieved from 'text1Text' to 'text5Text' variables -->
         <p class="flex-container-Endorsement"><%- text1Text %></p>
         <p class="flex-container-Endorsement"><%- text2Text %></p>
         <p class="flex-container-Endorsement"><%- text3Text %></p>
