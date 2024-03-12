@@ -55,12 +55,27 @@ app.get("/profile", (req, res) => {
     let titleText = splittedFullTitleText[0];
     let descText = splittedFullTitleText[1];
 
+    //get profiles names - GPT
+    const privateFolder = path.join(__dirname, "private");
+    const filesInPri = fs.readdirSync(privateFolder);
+
+    const profilesNames = [];
+    for (let index = 0; index < filesInPri.length; index++) {
+      const file = filesInPri[index];
+      const filePath = path.join(privateFolder, file);
+      const stats = fs.statSync(filePath);
+      if (stats.isDirectory()) {
+        profilesNames.push(file);
+      }
+    }
+
     res.render("profile.ejs", {
       id,
       descText,
       titleText,
       htmlBioContent,
       contentFiles,
+      profilesNames,
     });
   });
 });

@@ -56,21 +56,14 @@ Fida Rabah - 204647911
     </div>
     <h2 class="title-Endorsement">Meet The Whole Debugging Squad</h2>
     <div class="other-profiles">
-      <a href="/profile?id=jessy"
-        ><img class="squad" src="jessy/profile.png" alt="jessy"
+      <%profilesNames.forEach(profileName =>{%>
+      <a href="/profile?id=<%-profileName%>"
+        ><img
+          class="squad"
+          src="<%-profileName%>/profile.png"
+          alt="<%-profileName%>"
       /></a>
-      <a href="/profile?id=livlig"
-        ><img class="squad" src="livlig/profile.png" alt="livlig"
-      /></a>
-      <a href="/profile?id=mickey"
-        ><img class="squad" src="mickey/profile.png" alt="mickey"
-      /></a>
-      <a href="/profile?id=teddy"
-        ><img class="squad" src="teddy/profile.png" alt="teddy"
-      /></a>
-      <a href="/profile?id=myprofile"
-        ><img class="squad" src="myprofile/profile.png" alt="myprofile"
-      /></a>
+      <%});%>
     </div>
   </body>
 </html>
