@@ -28,42 +28,40 @@ app.get("/profile", (req, res) => {
 
   let profilePath = path.join(__dirname, "private", id);
 
-  let biofilePath = path.join(profilePath, "bio.txt");
-  let bioText = fs.readFileSync(biofilePath, "utf8");
+  fs.readdir(profilePath, (err, files) => {
+    if (err) {
+      console.error("Error reading directory:", err);
+      return;
+    }
 
-  const htmlBioContent = bioText.split(":");
+    const textFiles = files.filter((file) => {
+      return file.startsWith("text") && file.endsWith(".txt");
+    });
+    // read the files in the folder - GPT
+    let contentFiles = [];
+    textFiles.forEach((file) => {
+      let filePath = path.join(profilePath, file);
+      contentFiles.push(fs.readFileSync(filePath, "utf8"));
+    });
 
-  let titlefilePath = path.join(profilePath, "title.txt");
-  let fullTitleText = fs.readFileSync(titlefilePath, "utf8");
-  const splittedFullTitleText = fullTitleText.split("\r\n");
-  let titleText = splittedFullTitleText[0];
-  let descText = splittedFullTitleText[1];
-  const text1 = id === "teddy" ? "text01.txt" : "text1.txt";
-  let text1filePath = path.join(profilePath, text1);
-  let text1Text = fs.readFileSync(text1filePath, "utf8");
-  const text2 = id === "teddy" ? "text02.txt" : "text2.txt";
-  let text2filePath = path.join(profilePath, text2);
-  let text2Text = fs.readFileSync(text2filePath, "utf8");
-  const text3 = id === "teddy" ? "text03.txt" : "text3.txt";
-  let text3filePath = path.join(profilePath, text3);
-  let text3Text = fs.readFileSync(text3filePath, "utf8");
-  const text4 = id === "teddy" ? "text04.txt" : "text4.txt";
-  let text4filePath = path.join(profilePath, text4);
-  let text4Text = fs.readFileSync(text4filePath, "utf8");
-  const text5 = id === "teddy" ? "text05.txt" : "text5.txt";
-  let text5filePath = path.join(profilePath, text5);
-  let text5Text = fs.readFileSync(text5filePath, "utf8");
+    let biofilePath = path.join(profilePath, "bio.txt");
+    let bioText = fs.readFileSync(biofilePath, "utf8");
 
-  res.render("profile.ejs", {
-    id,
-    descText,
-    titleText,
-    htmlBioContent,
-    text1Text,
-    text2Text,
-    text3Text,
-    text4Text,
-    text5Text,
+    const htmlBioContent = bioText.split(":");
+
+    let titlefilePath = path.join(profilePath, "title.txt");
+    let fullTitleText = fs.readFileSync(titlefilePath, "utf8");
+    const splittedFullTitleText = fullTitleText.split("\r\n");
+    let titleText = splittedFullTitleText[0];
+    let descText = splittedFullTitleText[1];
+
+    res.render("profile.ejs", {
+      id,
+      descText,
+      titleText,
+      htmlBioContent,
+      contentFiles,
+    });
   });
 });
 

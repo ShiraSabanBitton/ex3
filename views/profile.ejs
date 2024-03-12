@@ -49,11 +49,9 @@ Fida Rabah - 204647911
         <!-- Title for endorsement section -->
         <h2 class="title-Endorsement">ENDORSEMENT</h2>
         <!-- Display endorsement text retrieved from 'text1Text' to 'text5Text' variables -->
-        <p class="flex-container-Endorsement"><%-text1Text%></p>
-        <p class="flex-container-Endorsement"><%-text2Text%></p>
-        <p class="flex-container-Endorsement"><%-text3Text%></p>
-        <p class="flex-container-Endorsement"><%-text4Text%></p>
-        <p class="flex-container-Endorsement"><%-text5Text%></p>
+        <%contentFiles.forEach(item =>{%>
+        <p class="flex-container-Endorsement"><%-item%></p>
+        <%});%>
       </div>
     </div>
     <h2 class="title-Endorsement">Meet The Whole Debugging Squad</h2>
