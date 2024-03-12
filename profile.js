@@ -38,20 +38,20 @@ app.get("/profile", (req, res) => {
   const splittedFullTitleText = fullTitleText.split("\r\n");
   let titleText = splittedFullTitleText[0];
   let descText = splittedFullTitleText[1];
-
-  let text1filePath = path.join(profilePath, "text1.txt");
+  const text1 = id === "teddy" ? "text01.txt" : "text1.txt";
+  let text1filePath = path.join(profilePath, text1);
   let text1Text = fs.readFileSync(text1filePath, "utf8");
-
-  let text2filePath = path.join(profilePath, "text2.txt");
+  const text2 = id === "teddy" ? "text02.txt" : "text2.txt";
+  let text2filePath = path.join(profilePath, text2);
   let text2Text = fs.readFileSync(text2filePath, "utf8");
-
-  let text3filePath = path.join(profilePath, "text3.txt");
+  const text3 = id === "teddy" ? "text03.txt" : "text3.txt";
+  let text3filePath = path.join(profilePath, text3);
   let text3Text = fs.readFileSync(text3filePath, "utf8");
-
-  let text4filePath = path.join(profilePath, "text4.txt");
+  const text4 = id === "teddy" ? "text04.txt" : "text4.txt";
+  let text4filePath = path.join(profilePath, text4);
   let text4Text = fs.readFileSync(text4filePath, "utf8");
-
-  let text5filePath = path.join(profilePath, "text5.txt");
+  const text5 = id === "teddy" ? "text05.txt" : "text5.txt";
+  let text5filePath = path.join(profilePath, text5);
   let text5Text = fs.readFileSync(text5filePath, "utf8");
 
   res.render("profile.ejs", {
